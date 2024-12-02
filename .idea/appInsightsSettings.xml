@@ -8,10 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.shrivecw.investandgrow" />
+                  <option name="mobileSdkAppId" value="1:665908136049:android:e3eb94e62c93b8ece333d0" />
+                  <option name="projectId" value="investandgrow-fe749" />
+                  <option name="projectNumber" value="665908136049" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />

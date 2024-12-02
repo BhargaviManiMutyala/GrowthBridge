@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="center"
+    android:background="@android:color/white">
+
+    <!-- Email Input -->
+    <EditText
+        android:id="@+id/emailEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:padding="12dp"
+        android:background="@android:drawable/edit_text"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Password Input -->
+    <EditText
+        android:id="@+id/passwordEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:padding="12dp"
+        android:background="@android:drawable/edit_text"
+        android:layout_marginBottom="16dp"/>
+
+
+
+    <TextView
+        android:id="@+id/forgotPasswordTextView"
+        android:layout_width="136dp"
+        android:layout_height="24dp"
+        android:layout_gravity="end"
+        android:layout_marginBottom="24dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:minHeight="48dp"
+        android:text="Forgot Password?"
+        android:textColor="#0000FF"
+        android:textSize="14sp" />
+
+    <!-- Login Button -->
+
+
+
+    <Button
+        android:id="@+id/loginButton"
+        android:layout_width="200sp"
+        android:layout_height="wrap_content"
+        android:text="Login"
+        android:onClick="goToMain"
+        android:backgroundTint="#6200EE"
+        android:textColor="@android:color/white"
+        android:padding="12dp"/>
+
+    <!-- Forgot Password -->
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="75sp"
+        android:clickable="true"
+        android:focusable="true"
+        android:textColor="#0000FF"
+        android:onClick="goToRegister"
+        android:text="Not registered? Register" />
+
+</LinearLayout>

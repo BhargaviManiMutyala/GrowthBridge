@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "665908136049",
+    "project_id": "investandgrow-fe749",
+    "storage_bucket": "investandgrow-fe749.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:665908136049:android:e3eb94e62c93b8ece333d0",
+        "android_client_info": {
+          "package_name": "com.shrivecw.investandgrow"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4sp1bxCL4kjqP9R_o1CIktClRHxK92xU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

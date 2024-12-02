@@ -13,16 +13,20 @@
         android:theme="@style/Theme.InvestAndGrow"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
-            android:exported="true">
+            android:name=".MainActivity">
+
+        </activity>
+        <activity android:name=".Investordetails"></activity>
+        <activity android:name=".Startupdetails"></activity>
+        <activity android:name=".LoginActivity"></activity>
+        <activity android:name=".RegisterActivity"></activity>
+        <activity android:name=".HomeActivity" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Investordetails"></activity>
-        <activity android:name=".Startupdetails"></activity>
     </application>
 
 </manifest>
