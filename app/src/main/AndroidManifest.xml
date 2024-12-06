@@ -27,6 +27,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".DisplayInvestors"></activity>
+        <activity android:name="Investor"></activity>
+        <activity android:name="InvestorAdapter"></activity>
     </application>
 
 </manifest>

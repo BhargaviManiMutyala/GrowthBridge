@@ -162,6 +162,9 @@ public class Startupdetails extends AppCompatActivity {
                 .set(startupData)
                 .addOnSuccessListener(aVoid -> {
                     Toast.makeText(this, "Startup details saved successfully!", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(Startupdetails.this, DisplayInvestors.class);
+                    intent.putExtra("email", email);
+                    startActivity(intent);
                     finish(); // Close the activity or navigate to another screen
                 })
                 .addOnFailureListener(e -> {
