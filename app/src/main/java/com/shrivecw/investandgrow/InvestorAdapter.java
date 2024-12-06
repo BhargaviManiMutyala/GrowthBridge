@@ -37,7 +37,7 @@ public class InvestorAdapter extends RecyclerView.Adapter<InvestorAdapter.Invest
         holder.description.setText("Description: " + investor.getDescription());
         holder.interest.setText("Interest: " + investor.getInterest());
 
-        holder.bankDocument.setOnClickListener(v -> {
+        /*holder.bankDocument.setOnClickListener(v -> {
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(investor.getBankDocumentUri()));
             context.startActivity(intent);
         });
@@ -45,7 +45,7 @@ public class InvestorAdapter extends RecyclerView.Adapter<InvestorAdapter.Invest
         holder.taxDocument.setOnClickListener(v -> {
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(investor.getTaxDocumentUri()));
             context.startActivity(intent);
-        });
+        });*/
     }
 
     @Override
@@ -61,8 +61,8 @@ public class InvestorAdapter extends RecyclerView.Adapter<InvestorAdapter.Invest
             investedIn = itemView.findViewById(R.id.investedIn);
             description = itemView.findViewById(R.id.description);
             interest = itemView.findViewById(R.id.interest);
-            bankDocument = itemView.findViewById(R.id.bankDocument);
-            taxDocument = itemView.findViewById(R.id.taxDocument);
+            /*bankDocument = itemView.findViewById(R.id.bankDocument);
+            taxDocument = itemView.findViewById(R.id.taxDocument);*/
         }
     }
 }

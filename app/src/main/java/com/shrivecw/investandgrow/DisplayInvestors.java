@@ -35,7 +35,6 @@ public class DisplayInvestors extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerView);
         noData = findViewById(R.id.noData);
         firestore = FirebaseFirestore.getInstance();
-
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new InvestorAdapter(this, investorList);
         recyclerView.setAdapter(adapter);
