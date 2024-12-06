@@ -1,6 +1,6 @@
 package com.shrivecw.investandgrow;
-
 import android.annotation.SuppressLint;
+
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
@@ -9,15 +9,19 @@ import android.provider.OpenableColumns;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class Investordetails extends AppCompatActivity {
-    String email;
+    String email; // Replace with dynamic email if needed
     private static final int PICK_IMAGE_REQUEST_BANK = 1;
     private static final int PICK_IMAGE_REQUEST_TAX = 2;
     private static final String TAG = "Investordetails";
@@ -39,10 +43,15 @@ public class Investordetails extends AppCompatActivity {
     private TextView imageTax;
     private Button submit;
 
+    private FirebaseFirestore firestore;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_investordetails);
+        Intent intent = getIntent();
+        email = intent.getStringExtra("email");
+        firestore = FirebaseFirestore.getInstance();
 
         // Initialize Views
         investedIn = findViewById(R.id.investedIn);
@@ -65,17 +74,58 @@ public class Investordetails extends AppCompatActivity {
 
         // Set Submit Listener
         submit.setOnClickListener(v -> {
-            String investedInText = editInvestedIn.getText().toString();
-            String describeText = editDescribe.getText().toString();
-            String interestText = editInterest.getText().toString();
+            // Get input values
+            String investedInText = editInvestedIn.getText().toString().trim();
+            String describeText = editDescribe.getText().toString().trim();
+            String interestText = editInterest.getText().toString().trim();
 
-            // Log and display entered information (placeholder for further logic)
-            Log.d(TAG, "Invested In: " + investedInText);
-            Log.d(TAG, "Description: " + describeText);
-            Log.d(TAG, "Interest: " + interestText);
+            // Validation logic
+            if (investedInText.isEmpty()) {
+                Toast.makeText(this, "Please enter what you have invested in.", Toast.LENGTH_SHORT).show();
+                return;
+            }
 
-            Toast.makeText(this, "Submitted Successfully!", Toast.LENGTH_SHORT).show();
+            if (describeText.isEmpty()) {
+                Toast.makeText(this, "Please provide a description.", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            if (interestText.isEmpty()) {
+                Toast.makeText(this, "Please enter your interest.", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            if (imageUriBank == null) {
+                Toast.makeText(this, "Please upload your bank document.", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            if (imageUriTax == null) {
+                Toast.makeText(this, "Please upload your tax document.", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // Save data to Firestore
+            Map<String, Object> investorDetails = new HashMap<>();
+            investorDetails.put("investedIn", investedInText);
+            investorDetails.put("description", describeText);
+            investorDetails.put("interest", interestText);
+            investorDetails.put("bankDocumentUri", imageUriBank.toString());
+            investorDetails.put("taxDocumentUri", imageUriTax.toString());
+
+            firestore.collection("investor")
+                    .document(email)
+                    .set(investorDetails)
+                    .addOnSuccessListener(aVoid -> {
+                        Toast.makeText(this, "Submitted Successfully!", Toast.LENGTH_SHORT).show();
+                        Log.d(TAG, "Data saved successfully");
+                    })
+                    .addOnFailureListener(e -> {
+                        Toast.makeText(this, "Submission failed. Please try again.", Toast.LENGTH_SHORT).show();
+                        Log.e(TAG, "Error saving data", e);
+                    });
         });
+
     }
 
     private void selectFile(int requestCode) {
