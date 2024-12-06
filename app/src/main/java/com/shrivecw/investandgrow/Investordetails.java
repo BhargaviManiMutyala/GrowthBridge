@@ -17,6 +17,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class Investordetails extends AppCompatActivity {
+    String email;
     private static final int PICK_IMAGE_REQUEST_BANK = 1;
     private static final int PICK_IMAGE_REQUEST_TAX = 2;
     private static final String TAG = "Investordetails";

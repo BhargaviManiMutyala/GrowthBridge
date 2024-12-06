@@ -1,8 +1,5 @@
 package com.shrivecw.investandgrow;
 
-
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.Cursor;
@@ -14,8 +11,15 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.firebase.firestore.FirebaseFirestore;
+import java.util.HashMap;
+import java.util.Map;
+
 public class Startupdetails extends AppCompatActivity {
 
+    String email;
     private static final int PICK_BANK_STATEMENT_REQUEST = 1;
     private static final int PICK_PATENT_DOCUMENT_REQUEST = 2;
 
@@ -26,12 +30,15 @@ public class Startupdetails extends AppCompatActivity {
     private Button btnUploadBankStatement, btnUploadPatentDocument, btnSubmit;
     private TextView textBankStatement, textPatentDocument;
 
+    private FirebaseFirestore db;
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_startupdetails);
-
+        Intent intent = getIntent();
+        email = intent.getStringExtra("email");
         // Initialize Views
         editTitle = findViewById(R.id.editTitle);
         editCategory = findViewById(R.id.editCategory);
@@ -43,6 +50,9 @@ public class Startupdetails extends AppCompatActivity {
         btnSubmit = findViewById(R.id.btnSubmit);
         textBankStatement = findViewById(R.id.textBankStatement);
         textPatentDocument = findViewById(R.id.textPatentDocument);
+
+        // Initialize Firestore
+        db = FirebaseFirestore.getInstance();
 
         // Set up Upload Buttons
         btnUploadBankStatement.setOnClickListener(v -> pickDocument(PICK_BANK_STATEMENT_REQUEST));
@@ -69,11 +79,11 @@ public class Startupdetails extends AppCompatActivity {
             if (fileName != null) {
                 if (requestCode == PICK_BANK_STATEMENT_REQUEST) {
                     bankStatementUri = uri;
-                    textBankStatement.setText("Uploaded: " + fileName); // Update TextView
+                    textBankStatement.setText("Uploaded: " + fileName);
                     Toast.makeText(this, "Bank Statement Uploaded", Toast.LENGTH_SHORT).show();
                 } else if (requestCode == PICK_PATENT_DOCUMENT_REQUEST) {
                     patentDocumentUri = uri;
-                    textPatentDocument.setText("Uploaded: " + fileName); // Update TextView
+                    textPatentDocument.setText("Uploaded: " + fileName);
                     Toast.makeText(this, "Patent Document Uploaded", Toast.LENGTH_SHORT).show();
                 }
             } else {
@@ -95,14 +105,12 @@ public class Startupdetails extends AppCompatActivity {
     }
 
     private void submitForm() {
-        // Retrieve user input
         String title = editTitle.getText().toString().trim();
         String category = editCategory.getText().toString().trim();
         String description = editDescription.getText().toString().trim();
         String companyPeriodStr = editCompanyPeriod.getText().toString().trim();
         String annualIncomeStr = editAnnualIncome.getText().toString().trim();
 
-        // Validate input
         if (title.isEmpty() || category.isEmpty() || description.isEmpty() || companyPeriodStr.isEmpty() || annualIncomeStr.isEmpty()) {
             Toast.makeText(this, "Please fill all the fields", Toast.LENGTH_SHORT).show();
             return;
@@ -138,7 +146,26 @@ public class Startupdetails extends AppCompatActivity {
             return;
         }
 
-        // Success
-        Toast.makeText(this, "Form Submitted Successfully!\nTitle: " + title + "\nCategory: " + category, Toast.LENGTH_LONG).show();
+        // Create a data map
+        Map<String, Object> startupData = new HashMap<>();
+        startupData.put("title", title);
+        startupData.put("category", category);
+        startupData.put("description", description);
+        startupData.put("companyPeriod", companyPeriod);
+        startupData.put("annualIncome", annualIncome);
+        startupData.put("bankStatementUri", bankStatementUri.toString());
+        startupData.put("patentDocumentUri", patentDocumentUri.toString());
+
+        // Save to Firestore
+        db.collection("startup")
+                .document(email) // Use the email as the document ID
+                .set(startupData)
+                .addOnSuccessListener(aVoid -> {
+                    Toast.makeText(this, "Startup details saved successfully!", Toast.LENGTH_SHORT).show();
+                    finish(); // Close the activity or navigate to another screen
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(this, "Failed to save startup details: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                });
     }
 }

@@ -52,6 +52,7 @@ public class LoginActivity extends AppCompatActivity {
                         // Login successful, navigate to MainActivity
                         Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(this, MainActivity.class);
+                        intent.putExtra("email", email); // Pass the email as an extra
                         startActivity(intent);
                     } else {
                         // Login failed

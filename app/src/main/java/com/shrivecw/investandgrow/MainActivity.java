@@ -15,11 +15,14 @@ import androidx.appcompat.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity {
     private Button startup, investor;
+    String email;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
+        Intent intent = getIntent();
+        email = intent.getStringExtra("email");
         startup = findViewById(R.id.startup);
         investor = findViewById(R.id.investor);
         investor.setOnClickListener(new View.OnClickListener() {
@@ -27,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //Toast.makeText(HomePage.this, "Action 2 Clicked", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(MainActivity.this, Investordetails.class);
-                intent.putExtra("key", "value");
+                intent.putExtra("email", email);
                 startActivity(intent);
                 finish();
             }
@@ -37,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //Toast.makeText(HomePage.this, "Action 2 Clicked", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(MainActivity.this, Startupdetails.class);
-                intent.putExtra("key", "value");
+                intent.putExtra("email", email);
                 startActivity(intent);
                 finish();
             }
