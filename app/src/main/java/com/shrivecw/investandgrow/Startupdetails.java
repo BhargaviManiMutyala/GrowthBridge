@@ -161,6 +161,7 @@ public class Startupdetails extends AppCompatActivity {
                 .document(email) // Use the email as the document ID
                 .set(startupData)
                 .addOnSuccessListener(aVoid -> {
+
                     Toast.makeText(this, "Startup details saved successfully!", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(Startupdetails.this, DisplayInvestors.class);
                     intent.putExtra("email", email);

@@ -118,7 +118,10 @@ public class Investordetails extends AppCompatActivity {
                     .set(investorDetails)
                     .addOnSuccessListener(aVoid -> {
                         Toast.makeText(this, "Submitted Successfully!", Toast.LENGTH_SHORT).show();
-                        Log.d(TAG, "Data saved successfully");
+                        //Log.d(TAG, "Data saved successfully");
+                        Intent intent1 = new Intent(Investordetails.this, DisplayStartup.class);
+                        intent1.putExtra("email", email);
+                        startActivity(intent1);
                     })
                     .addOnFailureListener(e -> {
                         Toast.makeText(this, "Submission failed. Please try again.", Toast.LENGTH_SHORT).show();

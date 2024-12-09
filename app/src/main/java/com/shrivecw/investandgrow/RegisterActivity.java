@@ -9,9 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.firebase.firestore.FirebaseFirestore;
-
 import java.util.HashMap;
 import java.util.Map;
 

@@ -28,8 +28,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".DisplayInvestors"></activity>
-        <activity android:name="Investor"></activity>
-        <activity android:name="InvestorAdapter"></activity>
+        <activity android:name=".DisplayStartup"></activity>
     </application>
 
 </manifest>
