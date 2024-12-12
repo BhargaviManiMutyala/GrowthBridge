@@ -107,6 +107,7 @@ public class Investordetails extends AppCompatActivity {
 
             // Save data to Firestore
             Map<String, Object> investorDetails = new HashMap<>();
+            investorDetails.put("Email",email);
             investorDetails.put("investedIn", investedInText);
             investorDetails.put("description", describeText);
             investorDetails.put("interest", interestText);
@@ -114,8 +115,7 @@ public class Investordetails extends AppCompatActivity {
             investorDetails.put("taxDocumentUri", imageUriTax.toString());
 
             firestore.collection("investor")
-                    .document(email)
-                    .set(investorDetails)
+                    .add(investorDetails)
                     .addOnSuccessListener(aVoid -> {
                         Toast.makeText(this, "Submitted Successfully!", Toast.LENGTH_SHORT).show();
                         //Log.d(TAG, "Data saved successfully");

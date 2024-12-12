@@ -1,5 +1,6 @@
 package com.shrivecw.investandgrow;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -13,21 +14,23 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.Map;
 
-public class RegisterActivity extends AppCompatActivity {
+public class StartupRegister extends AppCompatActivity {
 
-    private EditText etName, etEmail, etPhone, etPassword, etConfirmPassword;
+    private EditText etName, etEmail, etPhone, etPassword, etConfirmPassword, etCIN;
     private Button btnRegister;
     private TextView tvLogin;
 
     // Firestore instance
     private FirebaseFirestore db;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
+        setContentView(R.layout.activity_startupregister);
 
         // Initialize views
+        etCIN = findViewById(R.id.et_CIN);
         etName = findViewById(R.id.et_name);
         etEmail = findViewById(R.id.et_email);
         etPhone = findViewById(R.id.et_phone);
@@ -43,19 +46,20 @@ public class RegisterActivity extends AppCompatActivity {
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String CIN = etCIN.getText().toString().trim();
                 String name = etName.getText().toString().trim();
                 String email = etEmail.getText().toString().trim();
                 String phone = etPhone.getText().toString().trim();
                 String password = etPassword.getText().toString().trim();
                 String confirmPassword = etConfirmPassword.getText().toString().trim();
 
-                if (name.isEmpty() || email.isEmpty() || phone.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
-                    Toast.makeText(RegisterActivity.this, "Please fill all fields", Toast.LENGTH_SHORT).show();
+                if (CIN.isEmpty() || name.isEmpty() || email.isEmpty() || phone.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
+                    Toast.makeText(StartupRegister.this, "Please fill all fields", Toast.LENGTH_SHORT).show();
                 } else if (!password.equals(confirmPassword)) {
-                    Toast.makeText(RegisterActivity.this, "Passwords do not match", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(StartupRegister.this, "Passwords do not match", Toast.LENGTH_SHORT).show();
                 } else {
                     // Save user data to Firestore
-                    saveUserToFirestore(name, email, phone, password);
+                    saveUserToFirestore(CIN, name, email, phone, password);
                 }
             }
         });
@@ -65,14 +69,15 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Navigate to LoginActivity
-                Intent intent = new Intent(RegisterActivity.this, InvestorLoginActivity.class);
+                Intent intent = new Intent(StartupRegister.this, StartupLoginActivity.class);
                 startActivity(intent);
             }
         });
     }
 
-    private void saveUserToFirestore(String name, String email, String phone, String password) {
+    private void saveUserToFirestore(String CIN, String name, String email, String phone, String password) {
         Map<String, Object> user = new HashMap<>();
+        user.put("CIN", CIN);
         user.put("name", name);
         user.put("email", email);
         user.put("phone", phone);
@@ -81,14 +86,15 @@ public class RegisterActivity extends AppCompatActivity {
         db.collection("users")
                 .add(user)
                 .addOnSuccessListener(documentReference -> {
-                    Toast.makeText(RegisterActivity.this, "User registered successfully!", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(RegisterActivity.this, Investordetails.class);
-                    intent.putExtra("email", email);
+                    Toast.makeText(StartupRegister.this, "User registered successfully!", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(StartupRegister.this, Startupdetails.class);
+                    intent.putExtra("email",email);
                     startActivity(intent);
                     finish();
                 })
                 .addOnFailureListener(e -> {
-                    Toast.makeText(RegisterActivity.this, "Failed to register user: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(StartupRegister.this, "Failed to register user: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                 });
+
     }
 }

@@ -12,13 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.InvestAndGrow"
         tools:targetApi="31">
-        <activity
-            android:name=".MainActivity">
-
-        </activity>
         <activity android:name=".Investordetails"></activity>
         <activity android:name=".Startupdetails"></activity>
-        <activity android:name=".LoginActivity"></activity>
+        <activity android:name=".StartupLoginActivity"></activity>
         <activity android:name=".RegisterActivity"></activity>
         <activity android:name=".HomeActivity" android:exported="true">
             <intent-filter>
@@ -29,6 +25,8 @@
         </activity>
         <activity android:name=".DisplayInvestors"></activity>
         <activity android:name=".DisplayStartup"></activity>
+        <activity android:name=".InvestorLoginActivity"></activity>
+        <activity android:name=".StartupRegister"></activity>
     </application>
 
 </manifest>

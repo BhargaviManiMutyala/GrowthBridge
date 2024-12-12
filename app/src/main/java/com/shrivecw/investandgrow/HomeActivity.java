@@ -24,13 +24,14 @@ public class HomeActivity extends AppCompatActivity {
         });
     }
 
-    public void goToLogin(View view) {
-        Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
+    public void goToStartupLogin(View view) {
+        Intent intent = new Intent(HomeActivity.this,StartupLoginActivity.class);
         startActivity(intent);
     }
 
-    public void goToRegister(View view) {
-        Intent intent = new Intent(HomeActivity.this, RegisterActivity.class);
+    public void goToInvestorLogin(View view) {
+        Intent intent = new Intent(HomeActivity.this,InvestorLoginActivity.class);
         startActivity(intent);
     }
+
 }

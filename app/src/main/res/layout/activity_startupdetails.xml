@@ -24,6 +24,16 @@
             android:layout_marginTop="80dp">
 
             <EditText
+                android:id="@+id/editPatent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Patent ID"
+                android:inputType="numberDecimal"
+                android:padding="12dp"
+                android:background="@android:drawable/edit_text"
+                android:layout_marginBottom="16dp" />
+
+            <EditText
                 android:id="@+id/editTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -72,37 +82,6 @@
                 android:background="@android:drawable/edit_text"
                 android:layout_marginBottom="16dp" />
 
-            <Button
-                android:id="@+id/btnUploadBankStatement"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Upload Bank Statement"
-                android:layout_marginBottom="8dp"
-                android:textColor="@android:color/white" />
-
-            <TextView
-                android:id="@+id/textBankStatement"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="No file uploaded"
-                android:layout_marginBottom="16dp"
-                android:textAlignment="center" />
-
-            <Button
-                android:id="@+id/btnUploadPatentDocument"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Upload Patent Document"
-                android:layout_marginBottom="8dp"
-                android:textColor="@android:color/white" />
-
-            <TextView
-                android:id="@+id/textPatentDocument"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="No file uploaded"
-                android:layout_marginBottom="16dp"
-                android:textAlignment="center" />
 
             <Button
                 android:id="@+id/btnSubmit"

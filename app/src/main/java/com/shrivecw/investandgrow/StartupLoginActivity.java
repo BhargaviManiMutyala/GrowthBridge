@@ -10,11 +10,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
-import com.shrivecw.investandgrow.MainActivity;
-import com.shrivecw.investandgrow.RegisterActivity;
 
-public class LoginActivity extends AppCompatActivity {
+public class StartupLoginActivity extends AppCompatActivity {
     private EditText emailEditText, passwordEditText;
     private FirebaseFirestore db;
     private FirebaseAuth auth;
@@ -34,25 +31,25 @@ public class LoginActivity extends AppCompatActivity {
 
     // Login method
     public void goToMain(View view) {
-        String email = emailEditText.getText().toString().trim();
+        String cin = emailEditText.getText().toString().trim();
         String password = passwordEditText.getText().toString().trim();
 
-        if (email.isEmpty() || password.isEmpty()) {
+        if (cin.isEmpty() || password.isEmpty()) {
             Toast.makeText(this, "Please enter email and password", Toast.LENGTH_SHORT).show();
             return;
         }
 
         // Authenticate using Firestore
         db.collection("users") // Replace "users" with your collection name
-                .whereEqualTo("email", email)
+                .whereEqualTo("CIN", cin)
                 .whereEqualTo("password", password)
                 .get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful() && task.getResult() != null && !task.getResult().isEmpty()) {
                         // Login successful, navigate to MainActivity
                         Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(this, MainActivity.class);
-                        intent.putExtra("email", email); // Pass the email as an extra
+                        Intent intent = new Intent(this, DisplayInvestors.class);
+                        intent.putExtra("email", cin); // Pass the email as an extra
                         startActivity(intent);
                     } else {
                         // Login failed
@@ -63,7 +60,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void goToRegister(View view) {
-        Intent intent = new Intent(this, RegisterActivity.class);
+        Intent intent = new Intent(this, StartupRegister.class);
         startActivity(intent);
     }
 }
