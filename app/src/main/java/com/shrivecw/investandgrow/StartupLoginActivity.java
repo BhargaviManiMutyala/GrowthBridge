@@ -49,7 +49,7 @@ public class StartupLoginActivity extends AppCompatActivity {
                         // Login successful, navigate to MainActivity
                         Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(this, DisplayInvestors.class);
-                        intent.putExtra("email", cin); // Pass the email as an extra
+                        intent.putExtra("CIN", cin); // Pass the email as an extra
                         startActivity(intent);
                     } else {
                         // Login failed

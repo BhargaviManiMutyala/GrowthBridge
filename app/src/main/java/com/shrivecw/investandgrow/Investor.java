@@ -13,13 +13,9 @@ public class Investor {
         this.investedIn = investedIn;
         this.description = description;
         this.interest = interest;
-        /*this.bankDocumentUri = bankDocumentUri;
-        this.taxDocumentUri = taxDocumentUri;*/
     }
 
     public String getInvestedIn() { return investedIn; }
     public String getDescription() { return description; }
     public String getInterest() { return interest; }
-    /*public String getBankDocumentUri() { return bankDocumentUri; }
-    public String getTaxDocumentUri() { return taxDocumentUri; }*/
 }

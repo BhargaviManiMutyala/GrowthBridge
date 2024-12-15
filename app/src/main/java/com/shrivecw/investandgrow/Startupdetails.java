@@ -19,7 +19,7 @@ import java.util.Map;
 
 public class Startupdetails extends AppCompatActivity {
 
-    String email;
+    String cin;
 
     private EditText editTitle, editDescription, editCompanyPeriod, editAnnualIncome, editCategory, editPatent;
     private Button btnSubmit;
@@ -32,7 +32,7 @@ public class Startupdetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_startupdetails);
         Intent intent = getIntent();
-        email = intent.getStringExtra("email");
+        cin = intent.getStringExtra("CIN");
         // Initialize Views
         editPatent = findViewById(R.id.editPatent);
         editTitle = findViewById(R.id.editTitle);
@@ -86,7 +86,7 @@ public class Startupdetails extends AppCompatActivity {
 
         // Create a data map
         Map<String, Object> startupData = new HashMap<>();
-        startupData.put("Email",email);
+        startupData.put("CIN",cin);
         startupData.put("patentId",patentID);
         startupData.put("title", title);
         startupData.put("category", category);
@@ -100,7 +100,7 @@ public class Startupdetails extends AppCompatActivity {
                 .addOnSuccessListener(aVoid -> {
                     Toast.makeText(this, "Startup details saved successfully!", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(Startupdetails.this, DisplayInvestors.class);
-                    intent.putExtra("email", email);
+                    intent.putExtra("CIN", cin);
                     startActivity(intent);
                     finish(); // Close the activity or navigate to another screen
                 })

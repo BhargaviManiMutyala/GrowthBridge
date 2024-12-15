@@ -46,20 +46,20 @@ public class StartupRegister extends AppCompatActivity {
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String CIN = etCIN.getText().toString().trim();
+                String cin = etCIN.getText().toString().trim();
                 String name = etName.getText().toString().trim();
                 String email = etEmail.getText().toString().trim();
                 String phone = etPhone.getText().toString().trim();
                 String password = etPassword.getText().toString().trim();
                 String confirmPassword = etConfirmPassword.getText().toString().trim();
 
-                if (CIN.isEmpty() || name.isEmpty() || email.isEmpty() || phone.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
+                if (cin.isEmpty() || name.isEmpty() || email.isEmpty() || phone.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
                     Toast.makeText(StartupRegister.this, "Please fill all fields", Toast.LENGTH_SHORT).show();
                 } else if (!password.equals(confirmPassword)) {
                     Toast.makeText(StartupRegister.this, "Passwords do not match", Toast.LENGTH_SHORT).show();
                 } else {
                     // Save user data to Firestore
-                    saveUserToFirestore(CIN, name, email, phone, password);
+                    saveUserToFirestore(cin, name, email, phone, password);
                 }
             }
         });
@@ -75,9 +75,9 @@ public class StartupRegister extends AppCompatActivity {
         });
     }
 
-    private void saveUserToFirestore(String CIN, String name, String email, String phone, String password) {
+    private void saveUserToFirestore(String cin, String name, String email, String phone, String password) {
         Map<String, Object> user = new HashMap<>();
-        user.put("CIN", CIN);
+        user.put("CIN", cin);
         user.put("name", name);
         user.put("email", email);
         user.put("phone", phone);
@@ -88,7 +88,7 @@ public class StartupRegister extends AppCompatActivity {
                 .addOnSuccessListener(documentReference -> {
                     Toast.makeText(StartupRegister.this, "User registered successfully!", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(StartupRegister.this, Startupdetails.class);
-                    intent.putExtra("email",email);
+                    intent.putExtra("CIN",cin);
                     startActivity(intent);
                     finish();
                 })

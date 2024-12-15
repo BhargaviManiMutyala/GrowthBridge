@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DisplayInvestors extends AppCompatActivity {
-    String email;
+    String cin;
     private static final String TAG = "DisplayInvestors";
     private RecyclerView recyclerView;
     private TextView noData;
@@ -31,7 +31,7 @@ public class DisplayInvestors extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_displayinvestors);
         Intent intent = getIntent();
-        email = intent.getStringExtra("email");
+        cin = intent.getStringExtra("CIN");
         recyclerView = findViewById(R.id.recyclerView);
         noData = findViewById(R.id.noData);
         firestore = FirebaseFirestore.getInstance();
