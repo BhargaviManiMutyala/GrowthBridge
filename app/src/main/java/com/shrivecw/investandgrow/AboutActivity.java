@@ -1,5 +1,4 @@
 package com.shrivecw.investandgrow;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,32 +9,30 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class HomeActivity extends AppCompatActivity {
+public class AboutActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_about);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
     }
-
     public void goToStartupLogin(View view) {
-        Intent intent = new Intent(HomeActivity.this,StartupActivity.class);
+        Intent intent = new Intent(AboutActivity.this,StartupActivity.class);
         startActivity(intent);
     }
 
     public void goToInvestorLogin(View view) {
-        Intent intent = new Intent(HomeActivity.this,InvestorActivity.class);
+        Intent intent = new Intent(AboutActivity.this,InvestorActivity.class);
         startActivity(intent);
     }
-    public void goToAbout(View view) {
-        Intent intent = new Intent(HomeActivity.this,AboutActivity.class);
+    public void goToHome(View view) {
+        Intent intent = new Intent(AboutActivity.this,HomeActivity.class);
         startActivity(intent);
     }
-
 }

@@ -1,5 +1,6 @@
 package com.shrivecw.investandgrow;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,13 +11,14 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class HomeActivity extends AppCompatActivity {
+public class InvestorActivity extends AppCompatActivity {
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_investor);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -24,17 +26,24 @@ public class HomeActivity extends AppCompatActivity {
         });
     }
 
-    public void goToStartupLogin(View view) {
-        Intent intent = new Intent(HomeActivity.this,StartupActivity.class);
+    public void goToLogin(View view) {
+        Intent intent = new Intent(InvestorActivity.this,InvestorLoginActivity.class);
         startActivity(intent);
     }
-
-    public void goToInvestorLogin(View view) {
-        Intent intent = new Intent(HomeActivity.this,InvestorActivity.class);
+    public void goToRegister(View view) {
+        Intent intent = new Intent(InvestorActivity.this,RegisterActivity.class);
+        startActivity(intent);
+    }
+    public void goToStartup(View view) {
+        Intent intent = new Intent(InvestorActivity.this,StartupActivity.class);
+        startActivity(intent);
+    }
+    public void goToHome(View view) {
+        Intent intent = new Intent(InvestorActivity.this,HomeActivity.class);
         startActivity(intent);
     }
     public void goToAbout(View view) {
-        Intent intent = new Intent(HomeActivity.this,AboutActivity.class);
+        Intent intent = new Intent(InvestorActivity.this, AboutActivity.class);
         startActivity(intent);
     }
 

@@ -27,6 +27,9 @@
         <activity android:name=".DisplayStartup"></activity>
         <activity android:name=".InvestorLoginActivity"></activity>
         <activity android:name=".StartupRegister"></activity>
+        <activity android:name="AboutActivity"></activity>
+        <activity android:name=".StartupActivity"></activity>
+        <activity android:name=".InvestorActivity"></activity>
     </application>
 
 </manifest>
