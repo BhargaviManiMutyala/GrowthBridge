@@ -30,6 +30,8 @@
         <activity android:name="AboutActivity"></activity>
         <activity android:name=".StartupActivity"></activity>
         <activity android:name=".InvestorActivity"></activity>
+        <activity android:name=".ForgotInvestor"></activity>
+        <activity android:name=".ForgotStartup"></activity>
     </application>
 
 </manifest>

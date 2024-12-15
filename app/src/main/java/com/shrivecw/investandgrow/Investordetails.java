@@ -107,7 +107,7 @@ public class Investordetails extends AppCompatActivity {
 
             // Save data to Firestore
             Map<String, Object> investorDetails = new HashMap<>();
-            investorDetails.put("Email",email);
+            investorDetails.put("email",email);
             investorDetails.put("investedIn", investedInText);
             investorDetails.put("description", describeText);
             investorDetails.put("interest", interestText);

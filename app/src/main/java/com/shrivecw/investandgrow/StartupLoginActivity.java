@@ -63,4 +63,8 @@ public class StartupLoginActivity extends AppCompatActivity {
         Intent intent = new Intent(this, StartupRegister.class);
         startActivity(intent);
     }
+    public void goToForgot(View view) {
+        Intent intent = new Intent(this, ForgotStartup.class);
+        startActivity(intent);
+    }
 }

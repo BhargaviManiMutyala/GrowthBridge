@@ -63,4 +63,8 @@ public class InvestorLoginActivity extends AppCompatActivity {
         Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);
     }
+    public void goToForgot(View view) {
+        Intent intent = new Intent(this, ForgotInvestor.class);
+        startActivity(intent);
+    }
 }

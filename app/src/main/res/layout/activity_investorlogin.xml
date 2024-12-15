@@ -42,6 +42,7 @@
         android:focusable="true"
         android:minHeight="48dp"
         android:text="Forgot Password?"
+        android:onClick="goToForgot"
         android:textColor="#0000FF"
         android:textSize="14sp" />
 
