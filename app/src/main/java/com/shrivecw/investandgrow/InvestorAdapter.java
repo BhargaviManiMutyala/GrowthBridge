@@ -1,10 +1,13 @@
 package com.shrivecw.investandgrow;
+import static androidx.core.content.ContextCompat.startActivity;
+
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,6 +39,11 @@ public class InvestorAdapter extends RecyclerView.Adapter<InvestorAdapter.Invest
         holder.investedIn.setText("Invested In: " + investor.getInvestedIn());
         holder.description.setText("Description: " + investor.getDescription());
         holder.interest.setText("Interest: " + investor.getInterest());
+        holder.messageButton.setOnClickListener(view -> {
+            Intent intent = new Intent(context, MessageActivity.class);
+            intent.putExtra("investorName", investor.getInvestedIn());
+            context.startActivity(intent);
+        });
     }
 
     @Override
@@ -44,13 +52,14 @@ public class InvestorAdapter extends RecyclerView.Adapter<InvestorAdapter.Invest
     }
 
     static class InvestorViewHolder extends RecyclerView.ViewHolder {
-        TextView investedIn, description, interest;
+        TextView investedIn, description, interest, messageButton;
 
         public InvestorViewHolder(@NonNull View itemView) {
             super(itemView);
             investedIn = itemView.findViewById(R.id.investedIn);
             description = itemView.findViewById(R.id.description);
             interest = itemView.findViewById(R.id.interest);
+            messageButton = itemView.findViewById(R.id.actionButton);
         }
     }
 }

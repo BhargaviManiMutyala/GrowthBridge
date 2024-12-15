@@ -1,6 +1,7 @@
 package com.shrivecw.investandgrow;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,6 +37,11 @@ public class StartupAdapter extends RecyclerView.Adapter<StartupAdapter.StartupV
         holder.description.setText("Description: " + startup.getDescription());
         holder.companyPeriod.setText("Company Period: " + startup.getCompanyPeriod() + " years");
         holder.annualIncome.setText("Annual Income: $" + startup.getAnnualIncome());
+        holder.messageButton.setOnClickListener(view -> {
+            Intent intent = new Intent(context, MessageActivity.class);
+            intent.putExtra("investorName", startup.getTitle());
+            context.startActivity(intent);
+        });
     }
 
     @Override
@@ -44,7 +50,7 @@ public class StartupAdapter extends RecyclerView.Adapter<StartupAdapter.StartupV
     }
 
     static class StartupViewHolder extends RecyclerView.ViewHolder {
-        TextView title, category, description, companyPeriod, annualIncome;
+        TextView title, category, description, companyPeriod, annualIncome, messageButton;
 
         public StartupViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -53,6 +59,7 @@ public class StartupAdapter extends RecyclerView.Adapter<StartupAdapter.StartupV
             description = itemView.findViewById(R.id.description);
             companyPeriod = itemView.findViewById(R.id.companyPeriod);
             annualIncome = itemView.findViewById(R.id.annualIncome);
+            messageButton = itemView.findViewById(R.id.actionButton);
         }
     }
 }
