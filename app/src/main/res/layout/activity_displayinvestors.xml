@@ -1,21 +1,37 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/noData"
-        android:layout_width="match_parent"
+    <!-- Profile Button -->
+    <Button
+        android:id="@+id/viewProfileButton"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="No data available"
-        android:gravity="center"
-        android:visibility="gone"
-        android:textSize="18sp" />
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="16dp"
+        android:text="View Profile"
+        android:onClick="goToProfile"
+        android:textSize="14sp"
+        android:textColor="@android:color/white" />
 
+    <!-- RecyclerView for Investors -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone" />
-</LinearLayout>
+        android:layout_below="@id/viewProfileButton"
+        android:visibility="visible" />
+
+    <!-- No Data Text -->
+    <TextView
+        android:id="@+id/noData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="No data available"
+        android:visibility="gone"
+        android:textSize="16sp"
+        android:textColor="#FF0000" />
+
+</RelativeLayout>

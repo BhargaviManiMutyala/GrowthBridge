@@ -32,6 +32,9 @@
         <activity android:name=".InvestorActivity"></activity>
         <activity android:name=".ForgotInvestor"></activity>
         <activity android:name=".ForgotStartup"></activity>
+        <activity android:name=".MessageActivity"></activity>
+        <activity android:name=".StartupProfileActivity"></activity>
+        <activity android:name=".InvestorProfileActivity"></activity>
     </application>
 
 </manifest>
